@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SeeNMeet – Video-first dating</title>
+<meta name="description" content="SeeNMeet is a video-first dating app. See who you're really talking to, video call your matches, and play games together. Join the waitlist.">
+<meta property="og:title" content="SeeNMeet – See who you're really talking to">
+<meta property="og:description" content="Video profiles, video calls, and games for two. Join the SeeNMeet waitlist.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://getseenmeet.com">
+<link rel="icon" type="image/png" href="logo.png">
+<link rel="apple-touch-icon" href="logo.png">
+<meta property="og:image" content="https://getseenmeet.com/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1c1433;
+    --muted: #6b6480;
+    --brand: #4b3cc9;
+    --brand-dark: #33279a;
+    --blush: #ff6f91;
+    --paper: #fbf8ff;
+    --card: #ffffff;
+    --line: #e7e1f5;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    color: var(--ink);
+    background: var(--paper);
+    line-height: 1.55;
+  }
+  .hero {
+    background: linear-gradient(160deg, #2a1f7a 0%, var(--brand) 55%, #7b5cf0 100%);
+    color: #fff;
+    padding: 56px 22px 120px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::after {
+    content: "";
+    position: absolute;
+    width: 420px; height: 420px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,111,145,0.35), transparent 70%);
+    top: -140px; right: -140px;
+  }
+  .logo {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    margin-bottom: 36px;
+    position: relative;
+  }
+  .logo span { color: var(--blush); }
+  .logo-img { width: 72px; height: 72px; border-radius: 18px; display: block; margin: 0 auto 10px; box-shadow: 0 8px 24px rgba(0,0,0,0.25); }
+  h1 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(34px, 8vw, 54px);
+    line-height: 1.1;
+    font-weight: 700;
+    max-width: 640px;
+    margin: 0 auto 16px;
+    position: relative;
+  }
+  .hero p {
+    font-size: 18px;
+    max-width: 520px;
+    margin: 0 auto;
+    opacity: 0.92;
+    position: relative;
+  }
+  main {
+    max-width: 480px;
+    margin: -80px auto 0;
+    padding: 0 18px 48px;
+    position: relative;
+  }
+  .card {
+    background: var(--card);
+    border-radius: 20px;
+    padding: 28px 22px;
+    box-shadow: 0 18px 50px rgba(40, 25, 110, 0.16);
+  }
+  .card h2 {
+    font-family: 'Fraunces', serif;
+    font-size: 24px;
+    margin-bottom: 4px;
+  }
+  .card .sub { color: var(--muted); font-size: 15px; margin-bottom: 20px; }
+  label { display: block; font-size: 14px; font-weight: 600; margin: 14px 0 6px; }
+  input[type="text"], input[type="email"], select {
+    width: 100%;
+    padding: 13px 14px;
+    font-size: 16px;
+    font-family: inherit;
+    border: 1.5px solid var(--line);
+    border-radius: 12px;
+    background: #fff;
+    color: var(--ink);
+    outline: none;
+    transition: border-color 0.15s;
+  }
+  input:focus, select:focus { border-color: var(--brand); }
+  .choice { display: flex; gap: 10px; }
+  .choice label {
+    flex: 1;
+    margin: 0;
+    border: 1.5px solid var(--line);
+    border-radius: 12px;
+    padding: 12px;
+    text-align: center;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .choice input { display: none; }
+  .choice input:checked + span { color: var(--brand); font-weight: 600; }
+  .choice label:has(input:checked) { border-color: var(--brand); background: #f3f0ff; }
+  .check {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    font-weight: 400;
+    font-size: 14px;
+    color: var(--muted);
+    margin-top: 18px;
+  }
+  .check input { width: 18px; height: 18px; margin-top: 2px; accent-color: var(--brand); flex-shrink: 0; }
+  button {
+    width: 100%;
+    margin-top: 22px;
+    padding: 15px;
+    font-size: 17px;
+    font-weight: 600;
+    font-family: inherit;
+    color: #fff;
+    background: var(--brand);
+    border: none;
+    border-radius: 14px;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  button:hover { background: var(--brand-dark); }
+  button:disabled { opacity: 0.6; cursor: default; }
+  .error { color: #c62848; font-size: 14px; margin-top: 12px; min-height: 20px; }
+  .fine { font-size: 12px; color: var(--muted); text-align: center; margin-top: 14px; }
+  .fine a { color: var(--brand); }
+  .done { text-align: center; padding: 12px 0; display: none; }
+  .done .heart { font-size: 44px; color: var(--blush); }
+  .done h2 { margin: 8px 0; }
+  .done p { color: var(--muted); }
+  .features { margin-top: 36px; display: grid; gap: 14px; }
+  .feature {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 16px;
+  }
+  .feature .icon {
+    width: 42px; height: 42px;
+    border-radius: 12px;
+    background: #f3f0ff;
+    color: var(--brand);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .feature h3 { font-size: 16px; margin-bottom: 2px; }
+  .feature p { font-size: 14px; color: var(--muted); }
+  footer { text-align: center; font-size: 13px; color: var(--muted); padding: 24px 18px 36px; }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="logo"><img src="logo.png" alt="SeeNMeet logo" class="logo-img"><div>See<span>N</span>Meet</div></div>
+  <h1>See who you're really talking to.</h1>
+  <p>Video profiles, video calls, and games for two. Dating that feels real from the first hello.</p>
+</header>
+
+<main>
+  <div class="card">
+    <form id="waitlist" novalidate>
+      <h2>Join the waitlist</h2>
+      <p class="sub">Be one of the first in when SeeNMeet launches.</p>
+
+      <label for="name">First name</label>
+      <input type="text" id="name" maxlength="60" autocomplete="given-name" required>
+
+      <label for="email">Email</label>
+      <input type="email" id="email" maxlength="120" autocomplete="email" required>
+
+      <label>I am a</label>
+      <div class="choice">
+        <label><input type="radio" name="gender" value="woman"><span>Woman</span></label>
+        <label><input type="radio" name="gender" value="man"><span>Man</span></label>
+      </div>
+
+      <label for="country">Country</label>
+      <select id="country" required>
+        <option value="">Choose your country</option>
+        <option>Philippines</option>
+        <option>United States</option>
+        <option>Canada</option>
+        <option>United Kingdom</option>
+        <option>Australia</option>
+        <option>Other</option>
+      </select>
+
+      <label class="check">
+        <input type="checkbox" id="adult">
+        <span>I'm 18 or older and agree to receive an email when SeeNMeet launches.</span>
+      </label>
+
+      <button type="submit" id="submit">Join the waitlist</button>
+      <div class="error" id="error"></div>
+      <p class="fine">We'll only email you about SeeNMeet. See our <a href="https://triplethreatbj.com/seenmeet-privacy.html" target="_blank" rel="noopener">Privacy Policy</a>.</p>
+    </form>
+
+    <div class="done" id="done">
+      <div class="heart">&#10084;</div>
+      <h2 id="doneTitle">You're on the list!</h2>
+      <p id="doneText">We'll email you the moment SeeNMeet goes live. Tell a friend who's ready to meet someone real.</p>
+    </div>
+  </div>
+
+  <section class="features">
+    <div class="feature">
+      <div class="icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
+      </div>
+      <div>
+        <h3>Video profiles</h3>
+        <p>No more guessing from old photos. See their smile and hear their voice before you say hi.</p>
+      </div>
+    </div>
+    <div class="feature">
+      <div class="icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      </div>
+      <div>
+        <h3>Video calls with your matches</h3>
+        <p>When you both heart each other, hop on a video call right in the app.</p>
+      </div>
+    </div>
+    <div class="feature">
+      <div class="icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="4"/><path d="M6 12h4M8 10v4"/><circle cx="15.5" cy="11" r="0.8" fill="currentColor"/><circle cx="17.5" cy="13" r="0.8" fill="currentColor"/></svg>
+      </div>
+      <div>
+        <h3>Games for two</h3>
+        <p>Break the ice with games you can play in chat or during a call. Easy to start, fun to lose.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>&copy; 2026 Done Deal Entertainment LLC &middot; Chicago</footer>
+
+<script>
+  const ENDPOINT = 'https://us-central1-love-app-acb07.cloudfunctions.net/joinWaitlist';
+  const source = new URLSearchParams(window.location.search).get('src') || 'direct';
+
+  const form = document.getElementById('waitlist');
+  const errorEl = document.getElementById('error');
+  const submitBtn = document.getElementById('submit');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    errorEl.textContent = '';
+
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const genderInput = document.querySelector('input[name="gender"]:checked');
+    const country = document.getElementById('country').value;
+    const isAdult = document.getElementById('adult').checked;
+
+    if (!name) return (errorEl.textContent = 'Please enter your first name.');
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) return (errorEl.textContent = 'Please enter a valid email.');
+    if (!genderInput) return (errorEl.textContent = 'Please choose Woman or Man.');
+    if (!country) return (errorEl.textContent = 'Please choose your country.');
+    if (!isAdult) return (errorEl.textContent = 'You must be 18 or older to join.');
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Joining...';
+
+    try {
+      const response = await fetch(ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, gender: genderInput.value, country, isAdult, source }),
+      });
+      const result = await response.json();
+      if (!response.ok || !result.ok) throw new Error(result.error || 'Something went wrong.');
+
+      if (result.already) {
+        document.getElementById('doneTitle').textContent = "You're already on the list!";
+        document.getElementById('doneText').textContent = "No need to sign up twice. We'll email you as soon as SeeNMeet launches.";
+      }
+      form.style.display = 'none';
+      document.getElementById('done').style.display = 'block';
+    } catch (err) {
+      errorEl.textContent = err.message || 'Something went wrong. Please try again.';
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Join the waitlist';
+    }
+  });
+</script>
+</body>
+</html>
