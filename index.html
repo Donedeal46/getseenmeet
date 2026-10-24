@@ -226,55 +226,6 @@
 </main>
 
 <footer>&copy; 2026 Done Deal Entertainment LLC &middot; Chicago</footer>
-
-<script>
-  const ENDPOINT = 'https://us-central1-love-app-acb07.cloudfunctions.net/joinWaitlist';
-  const source = new URLSearchParams(window.location.search).get('src') || 'direct';
-
-  const form = document.getElementById('waitlist');
-  const errorEl = document.getElementById('error');
-  const submitBtn = document.getElementById('submit');
-
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    errorEl.textContent = '';
-
-    const name = document.getElementById('name').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const genderInput = document.querySelector('input[name="gender"]:checked');
-    const country = document.getElementById('country').value;
-    const isAdult = document.getElementById('adult').checked;
-
-    if (!name) return (errorEl.textContent = 'Please enter your first name.');
-    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) return (errorEl.textContent = 'Please enter a valid email.');
-    if (!genderInput) return (errorEl.textContent = 'Please choose Woman or Man.');
-    if (!country) return (errorEl.textContent = 'Please choose your country.');
-    if (!isAdult) return (errorEl.textContent = 'You must be 18 or older to join.');
-
-    submitBtn.disabled = true;
-    submitBtn.textContent = 'Joining...';
-
-    try {
-      const response = await fetch(ENDPOINT, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email, gender: genderInput.value, country, isAdult, source }),
-      });
-      const result = await response.json();
-      if (!response.ok || !result.ok) throw new Error(result.error || 'Something went wrong.');
-
-      if (result.already) {
-        document.getElementById('doneTitle').textContent = "You're already on the list!";
-        document.getElementById('doneText').textContent = "No need to sign up twice. We'll email you as soon as SeeNMeet launches.";
-      }
-      form.style.display = 'none';
-      document.getElementById('done').style.display = 'block';
-    } catch (err) {
-      errorEl.textContent = err.message || 'Something went wrong. Please try again.';
-      submitBtn.disabled = false;
-      submitBtn.textContent = 'Join the waitlist';
-    }
-  });
-</script>
+  
 </body>
 </html>
